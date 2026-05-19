@@ -35,6 +35,7 @@ import androidx.lifecycle.viewModelScope
 import com.geekorum.geekdroid.battery.isPowerSaveModeFlow
 import com.geekorum.geekdroid.battery.lowBatteryFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flatMapLatest
@@ -71,6 +72,7 @@ open class BatteryFriendlyActivity : AppCompatActivity() {
 /**
  * Observe the system to know if we should force night mode on all activities
  */
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class ForceNightModeViewModel(
     private val batterySaverFlow: Flow<Boolean>,
@@ -79,7 +81,7 @@ class ForceNightModeViewModel(
 
     @Inject
     constructor(application: Application, powerManager: PowerManager) : this(
-        isPowerSaveModeFlow(application, powerManager), application.lowBatteryFlow()
+        application.isPowerSaveModeFlow(powerManager), application.lowBatteryFlow()
     )
 
     val forceNightMode = batterySaverFlow.flatMapLatest { saving ->
