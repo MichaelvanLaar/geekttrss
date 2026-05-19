@@ -1,1 +1,2 @@
+Ajout d'un paramètre pour explorer les articles par catégories de flux
 Diverses corrections de bugs et améliorations

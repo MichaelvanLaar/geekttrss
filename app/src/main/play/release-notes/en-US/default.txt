@@ -1,1 +1,2 @@
+Add option to browse articles by feed categories.
 Various bug fixes and improvements
