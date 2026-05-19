@@ -28,7 +28,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -139,7 +139,7 @@ class ArticleListActivity : SessionActivity() {
                 LaunchedEffect(undoUnreadSnackbarMessage) {
                     undoUnreadSnackbarHostState.currentSnackbarMessage = undoUnreadSnackbarMessage
                 }
-                val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+                val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
                 val hasFabInFixedDrawer = windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND)
                 val fabPresenter = remember {
                     FabPresenter(navController)

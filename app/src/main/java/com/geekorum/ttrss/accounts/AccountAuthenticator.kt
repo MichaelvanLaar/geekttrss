@@ -29,7 +29,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.core.os.bundleOf
 import com.geekorum.ttrss.BuildConfig
 import com.geekorum.ttrss.R
 import com.geekorum.ttrss.background_job.BackgroundJobManager
@@ -67,7 +66,9 @@ internal constructor(
             putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response)
             action = LoginActivity.ACTION_ADD_ACCOUNT
         }
-        return bundleOf(AccountManager.KEY_INTENT to intent)
+        return Bundle().apply {
+            putParcelable(AccountManager.KEY_INTENT, intent)
+        }
     }
 
     override fun confirmCredentials(
@@ -78,7 +79,9 @@ internal constructor(
             action = LoginActivity.ACTION_CONFIRM_CREDENTIALS
             putExtra(LoginActivity.EXTRA_ACCOUNT, account)
         }
-        return bundleOf(AccountManager.KEY_INTENT to intent)
+        return Bundle().apply {
+            putParcelable(AccountManager.KEY_INTENT, intent)
+        }
     }
 
     @SuppressLint("MissingPermission")
@@ -101,11 +104,11 @@ internal constructor(
                 responsePayload.checkStatus()
                 responsePayload.sessionId
             }
-            return bundleOf(
-                AccountManager.KEY_ACCOUNT_NAME to account.name,
-                AccountManager.KEY_ACCOUNT_TYPE to account.type,
-                AccountManager.KEY_AUTHTOKEN to sessionId
-            )
+            return Bundle().apply {
+                putString(AccountManager.KEY_ACCOUNT_NAME, account.name)
+                putString(AccountManager.KEY_ACCOUNT_TYPE, account.type)
+                putString(AccountManager.KEY_AUTHTOKEN, sessionId)
+            }
         } catch (e: ApiCallException) {
             if (e.errorCode === ApiCallException.ApiError.LOGIN_FAILED) {
                 backgroundJobManager.cancelRefresh(account)
@@ -120,9 +123,10 @@ internal constructor(
             Timber.log(priority, e,"Unable to login")
         }
         // if we got there an error happened, probably network
-        return bundleOf(
-            AccountManager.KEY_ERROR_CODE to AccountManager.ERROR_CODE_NETWORK_ERROR,
-            AccountManager.KEY_ERROR_MESSAGE to "Unable to login")
+        return  Bundle().apply {
+            putInt(AccountManager.KEY_ERROR_CODE, AccountManager.ERROR_CODE_NETWORK_ERROR)
+            putString(AccountManager.KEY_ERROR_MESSAGE, "Unable to login")
+        }
     }
 
     private fun getRevalidateCredentialResponse(account: Account): Bundle {
@@ -130,7 +134,9 @@ internal constructor(
             action = LoginActivity.ACTION_CONFIRM_CREDENTIALS
             putExtra(LoginActivity.EXTRA_ACCOUNT, account)
         }
-        return bundleOf(AccountManager.KEY_INTENT to intent)
+        return Bundle().apply {
+            putParcelable(AccountManager.KEY_INTENT, intent)
+        }
     }
 
     @Throws(ExecutionException::class, InterruptedException::class)
@@ -159,10 +165,10 @@ internal constructor(
     }
 
     private fun makeNotSupportedResponse(): Bundle {
-        return bundleOf(
-            AccountManager.KEY_ERROR_CODE to ERROR_CODE_NOT_SUPPORTED,
-            AccountManager.KEY_ERROR_MESSAGE to "Not supported"
-        )
+        return Bundle().apply {
+            putInt(AccountManager.KEY_ERROR_CODE, ERROR_CODE_NOT_SUPPORTED)
+            putString(AccountManager.KEY_ERROR_MESSAGE, "Not supported")
+        }
     }
 
     override fun hasFeatures(
@@ -170,7 +176,9 @@ internal constructor(
     ): Bundle {
         // let's say no for now unless features is empty
         val supported = features.isEmpty()
-        return bundleOf(AccountManager.KEY_BOOLEAN_RESULT to supported)
+        return Bundle().apply {
+            putBoolean(AccountManager.KEY_BOOLEAN_RESULT, supported)
+        }
     }
 
     companion object {

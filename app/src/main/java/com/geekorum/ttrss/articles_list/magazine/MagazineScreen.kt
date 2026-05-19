@@ -38,13 +38,12 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -81,7 +80,7 @@ import kotlinx.coroutines.launch
 fun MagazineScreen(
     activityViewModel: ActivityViewModel,
     magazineViewModel: MagazineViewModel = hiltViewModel(),
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     val viewLifecycleOwner = LocalLifecycleOwner.current

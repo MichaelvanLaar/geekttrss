@@ -120,7 +120,7 @@ class FeedsNavigationMenuPresenter(
         FeedListNavigationMenu(
             modifier = modifier,
             user = account?.name ?: "",
-            server = server ?: "",
+            server = server,
             feedSection = {
                 val feeds by feedsViewModel.feeds.collectAsStateWithLifecycle()
                 val selectedFeed = feeds.find { it.feed.id == currentFeedId }?.feed

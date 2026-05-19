@@ -128,7 +128,7 @@ fun ModalFeedNavigationRail(
     header: @Composable (() -> Unit)? = null,
     state: WideNavigationRailState = rememberWideNavigationRailState(),
     hideOnCollapse: Boolean = false,
-    collapsedShape: Shape = WideNavigationRailDefaults.containerShape,
+    collapsedShape: Shape = WideNavigationRailDefaults.shape,
     expandedShape: Shape = MaterialTheme.shapes.large.copy(topStart = CornerSize(0), bottomStart = CornerSize(0)),
     colors: WideNavigationRailColors = WideNavigationRailDefaults.colors(),
 ) {
@@ -195,7 +195,7 @@ fun FeedNavigationRail(
     settingsSection: @Composable () -> Unit,
     header: @Composable (() -> Unit)? = null,
     state: WideNavigationRailState = rememberWideNavigationRailState(),
-    shape: Shape = WideNavigationRailDefaults.containerShape,
+    shape: Shape = WideNavigationRailDefaults.shape,
     colors: WideNavigationRailColors = WideNavigationRailDefaults.colors(),
 ) {
     WideNavigationRail(

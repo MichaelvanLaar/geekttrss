@@ -22,7 +22,6 @@ package com.geekorum.ttrss.articles_browsing
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -41,17 +40,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.WideNavigationRailState
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.rememberWideNavigationRailState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeRuntimeApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.window.core.layout.WindowSizeClass
@@ -78,7 +75,7 @@ fun ArticleBrowsingScaffold(
     onFeedClick: (Feed) -> Unit,
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass,
     content: @Composable () -> Unit
 ) {
     ArticleBrowsingScaffold(
@@ -164,7 +161,7 @@ fun ArticleBrowsingScaffold(
 @Composable
 fun ArticleBrowsingScaffold(
     modifier: Modifier = Modifier,
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass,
     railState: WideNavigationRailState = rememberWideNavigationRailState(),
     railHeader: @Composable ((isInDrawer: Boolean) -> Unit)?,
     railQuickFeeds: @Composable (() -> Unit),

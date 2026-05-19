@@ -117,7 +117,7 @@ class KotlinInitializer : Initializer<Unit> {
         // load Dispatchers.Main at application start
         withStrictMode(allowThreadDiskReads()) {
             Dispatchers.Main
-            val k = Reflection.getOrCreateKotlinClass(Object::class.java)
+            val k = Reflection.getOrCreateKotlinClass(Any::class.java)
             Timber.d("initialize kotlin Klass with class $k")
         }
     }

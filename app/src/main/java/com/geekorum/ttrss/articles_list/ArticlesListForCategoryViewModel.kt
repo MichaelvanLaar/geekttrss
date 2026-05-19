@@ -21,14 +21,11 @@
 package com.geekorum.ttrss.articles_list
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.map
-import com.geekorum.geekdroid.accounts.SyncInProgressLiveData
 import com.geekorum.geekdroid.accounts.isSyncActiveFlow
 import com.geekorum.ttrss.background_job.BackgroundJobManager
 import com.geekorum.ttrss.data.ArticleWithFeed

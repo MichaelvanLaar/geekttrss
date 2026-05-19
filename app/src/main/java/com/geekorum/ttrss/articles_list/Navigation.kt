@@ -26,7 +26,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -113,7 +113,7 @@ class ArticlesListScreenArgs(
 @Composable
 fun ArticlesListNavHost(
     activityViewModel: ActivityViewModel = hiltViewModel(),
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass,
     navController: NavHostController = rememberNavController(),
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {

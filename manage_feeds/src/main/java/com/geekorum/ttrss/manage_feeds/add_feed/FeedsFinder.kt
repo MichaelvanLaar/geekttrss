@@ -58,7 +58,7 @@ class FeedsFinder @Inject constructor(
 
     private fun getResultFromResponse(response: Response): List<FeedResult> {
         val body = response.body
-        val contentType = body?.contentType()?.let {
+        val contentType = body.contentType()?.let {
             // remove charset if any
             "${it.type}/${it.subtype}".toMediaType()
         }

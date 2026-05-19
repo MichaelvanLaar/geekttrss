@@ -25,7 +25,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Surface
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -70,7 +70,7 @@ fun ArticlesListByTagScreen(
     articlesListByTagViewModel: ArticlesListByTagViewModel = hiltViewModel { factory: ArticlesListByTagViewModel.Factory ->
         factory.create(tag)
     },
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     val compactItemsInSmallScreens by activityViewModel.displayCompactItems.collectAsStateWithLifecycle()

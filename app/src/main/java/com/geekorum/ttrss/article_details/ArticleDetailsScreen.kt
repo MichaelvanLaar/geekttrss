@@ -71,8 +71,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.material3.adaptive.currentWindowSize
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -134,7 +133,7 @@ fun ArticleDetailsScreen(
     onNavigateUpClick: () -> Unit,
     onArticleClick: (Article) -> Unit,
     webViewClient: AccompanistWebViewClient,
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
 ) {
     if (!windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND) || !windowSizeClass.isHeightAtLeastBreakpoint(WindowSizeClass.HEIGHT_DP_MEDIUM_LOWER_BOUND)) {
         ArticleDetailsScreen(
