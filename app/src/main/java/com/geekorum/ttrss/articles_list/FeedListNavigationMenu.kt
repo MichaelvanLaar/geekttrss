@@ -287,7 +287,7 @@ private fun CategoryHeader(
             offset = DpOffset(x = 16.dp, y = (-8).dp)
         ) {
             DropdownMenuItem(
-                text = { Text(stringResource(R.string.mark_as_read)) },
+                text = { Text(stringResource(R.string.menu_item_mark_category_as_read)) },
                 onClick = {
                     onMarkCategoryAsReadClick(category)
                     displayDropdownMenu = false
