@@ -154,6 +154,10 @@ class ArticlesRepository
         articleDao.updateArticleUnreadForFeed(feedId, newValue)
     }
 
+    suspend fun setArticlesUnreadForCategory(catId: Long, newValue: Boolean) {
+        articleDao.updateArticleUnreadForCategory(catId, newValue)
+    }
+
     fun searchArticles(query: String): PagingSource<Int, ArticleWithFeed> {
         return articleDao.searchArticles(query)
     }

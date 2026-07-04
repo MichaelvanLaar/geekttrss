@@ -145,7 +145,8 @@ class FeedsNavigationMenuPresenter(
                         onCategoryClick = { category ->
                             navigateToCategory(category)
                             onNavigation()
-                        }
+                        },
+                        onMarkCategoryAsReadClick = feedsViewModel::markCategoryAsRead,
                     )
                 } else {
                     FeedSection(
