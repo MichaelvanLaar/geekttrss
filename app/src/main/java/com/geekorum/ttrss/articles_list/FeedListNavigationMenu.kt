@@ -243,24 +243,12 @@ private fun CategoryHeader(
     )
     Box {
         var displayDropdownMenu by remember { mutableStateOf(false) }
-        NavigationDrawerItem(
-            label = {
-                Text(
-                    text = category.title,
-                    style = MaterialTheme.typography.labelLarge,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            },
-            selected = isSelected || displayDropdownMenu,
-            colors = if (displayDropdownMenu)
-                NavigationDrawerItemDefaults.colors(
-                    selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                    selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                    selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-            else NavigationDrawerItemDefaults.colors(),
+        NavigationItem(
+            category.title,
+            selected = isSelected,
+            selectedForAction = displayDropdownMenu,
             onClick = onCategoryClick,
+            onLongClick = { displayDropdownMenu = true },
             icon = { Icon(Icons.Default.Folder, contentDescription = null) },
             badge = {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -277,9 +265,6 @@ private fun CategoryHeader(
                     }
                 }
             },
-            modifier = Modifier
-                .interceptLongClick { displayDropdownMenu = true }
-                .padding(NavigationDrawerItemDefaults.ItemPadding)
         )
         DropdownMenu(
             expanded = displayDropdownMenu,
