@@ -64,6 +64,9 @@ interface ApiService {
     @Throws(ApiCallException::class)
     suspend fun markFeedAsRead(feedId: Long)
 
+    @Throws(ApiCallException::class)
+    suspend fun markCategoryAsRead(categoryId: Long)
+
     companion object {
         val ALL_ARTICLES_FEED_ID: Long = -4
     }

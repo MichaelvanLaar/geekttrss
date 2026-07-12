@@ -192,6 +192,7 @@ fun CategorizedFeedSection(
     onFeedSelected: (Feed) -> Unit,
     onMarkFeedAsReadClick: (Feed) -> Unit,
     onCategoryClick: (Category) -> Unit,
+    onMarkCategoryAsReadClick: (Category) -> Unit,
 ) {
     SectionLabel(stringResource(R.string.title_feeds_menu))
     NavigationItem(stringResource(R.string.title_magazine),
@@ -214,7 +215,8 @@ fun CategorizedFeedSection(
                     isExpanded = true
                     onCategoryClick(category)
                 },
-                onToggleExpand = { isExpanded = !isExpanded }
+                onToggleExpand = { isExpanded = !isExpanded },
+                onMarkCategoryAsReadClick = onMarkCategoryAsReadClick,
             )
             if (isExpanded) {
                 for (feedWithFavIcon in feeds) {
@@ -232,41 +234,52 @@ private fun CategoryHeader(
     isSelected: Boolean,
     onCategoryClick: () -> Unit,
     onToggleExpand: () -> Unit,
+    onMarkCategoryAsReadClick: (Category) -> Unit,
 ) {
     val chevronRotation by animateFloatAsState(
         targetValue = if (isExpanded) 180f else 0f,
         animationSpec = tween(300),
         label = "chevronRotation"
     )
-    NavigationDrawerItem(
-        label = {
-            Text(
-                text = category.title,
-                style = MaterialTheme.typography.labelLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+    Box {
+        var displayDropdownMenu by remember { mutableStateOf(false) }
+        NavigationItem(
+            category.title,
+            selected = isSelected,
+            selectedForAction = displayDropdownMenu,
+            onClick = onCategoryClick,
+            onLongClick = { displayDropdownMenu = true },
+            icon = { Icon(Icons.Default.Folder, contentDescription = null) },
+            badge = {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    if (category.unreadCount > 0) {
+                        Text(category.unreadCount.toString())
+                        Spacer(Modifier.width(4.dp))
+                    }
+                    IconButton(onClick = onToggleExpand, modifier = Modifier.size(24.dp)) {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowDown,
+                            contentDescription = null,
+                            modifier = Modifier.rotate(chevronRotation),
+                        )
+                    }
+                }
+            },
+        )
+        DropdownMenu(
+            expanded = displayDropdownMenu,
+            onDismissRequest = { displayDropdownMenu = false },
+            offset = DpOffset(x = 16.dp, y = (-8).dp)
+        ) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.menu_item_mark_category_as_read)) },
+                onClick = {
+                    onMarkCategoryAsReadClick(category)
+                    displayDropdownMenu = false
+                }
             )
-        },
-        selected = isSelected,
-        onClick = onCategoryClick,
-        icon = { Icon(Icons.Default.Folder, contentDescription = null) },
-        badge = {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                if (category.unreadCount > 0) {
-                    Text(category.unreadCount.toString())
-                    Spacer(Modifier.width(4.dp))
-                }
-                IconButton(onClick = onToggleExpand, modifier = Modifier.size(24.dp)) {
-                    Icon(
-                        imageVector = Icons.Default.KeyboardArrowDown,
-                        contentDescription = null,
-                        modifier = Modifier.rotate(chevronRotation),
-                    )
-                }
-            }
-        },
-        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-    )
+        }
+    }
 }
 
 @Composable
@@ -595,6 +608,7 @@ fun PreviewCategorizedFeedListNavigationMenu() {
                             },
                             onMarkFeedAsReadClick = {},
                             onCategoryClick = {},
+                            onMarkCategoryAsReadClick = {},
                         )
                     },
                     manageFeedsSection = {

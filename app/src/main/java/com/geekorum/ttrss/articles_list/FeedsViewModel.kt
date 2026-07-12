@@ -153,4 +153,16 @@ class FeedsViewModel @Inject constructor(
         }
     }
 
+    fun markCategoryAsRead(category: Category) = viewModelScope.launch {
+        withContext(dispatchers.io) {
+            try {
+                apiService.markCategoryAsRead(category.id)
+                articlesRepository.setArticlesUnreadForCategory(category.id, false)
+                refreshFeeds()
+            } catch (e: ApiCallException) {
+                Timber.w(e, "Unable to mark category as read")
+            }
+        }
+    }
+
 }

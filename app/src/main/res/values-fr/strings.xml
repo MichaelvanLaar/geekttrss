@@ -39,7 +39,8 @@
     <string name="sort_order_most_recent_first">Le plus récent</string>
     <string name="sort_order_oldest_first">Le plus vieux</string>
     <string name="title_article_search">Recherche</string>
-    <string name="menu_item_mark_feed_as_read">Marquer comme lu</string>
+    <string name="menu_item_mark_feed_as_read">Marquer le flux comme lu</string>
+    <string name="menu_item_mark_category_as_read">Marquer la catégorie comme lue</string>
     <string name="label_articles_search_no_results">Pas d\'articles trouvés pour \"%1$s\"</string>
     <string name="title_article_details">Détails de l\'article</string>
     <string name="title_feeds_menu">Flux</string>

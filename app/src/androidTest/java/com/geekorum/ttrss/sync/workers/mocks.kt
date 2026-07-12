@@ -83,6 +83,10 @@ internal open class MockApiService : ApiService {
         TODO("Not yet implemented")
     }
 
+    override suspend fun markCategoryAsRead(categoryId: Long) {
+        TODO("Not yet implemented")
+    }
+
 }
 
 

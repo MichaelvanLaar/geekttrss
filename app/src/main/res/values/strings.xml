@@ -47,7 +47,8 @@
     <string name="title_article_search">Search</string>
     <string name="label_feed_name" translatable="false">{feed_name}</string>
     <string name="label_tag" translatable="false">#{tag}</string>
-    <string name="menu_item_mark_feed_as_read">Mark as read</string>
+    <string name="menu_item_mark_feed_as_read">Mark feed as read</string>
+    <string name="menu_item_mark_category_as_read">Mark category as read</string>
     <string name="label_articles_search_no_results">No articles found for \"%1$s\"</string>
     <string name="label_articles_search_no_results_instructions">Check the spelling or try a different search term</string>
 
